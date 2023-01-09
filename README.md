@@ -51,17 +51,20 @@ This class implements the Callable interface and is used to calculate the number
   ![](https://i.ibb.co/v4k0Nmp/Screenshot-2023-01-09-211217.jpg)
 
 # Part 2:
-  this part we want to impliment the priority generic task that we can change the order of the task with threadpool.
-  we have 3 type of task.
-  -Computational Task,IO-Bound Task,Unknown Task
+ In this part, we implement a priority generic task system using a thread pool. The task system allows tasks to be added to a queue and assigns them a priority based on their type (Computational, IO-Bound, or Unknown). The tasks are then executed by the thread pool in the order of their priority.
  
-  
+ 
+
+To run this project, download the files and open them in an IDE such as IntelliJ. Then, open the Tests class and run it to test the priority generic task system.
   
 # Code Description:
 
-- Task.java this class represent task with enum class Tasktype that given at the EX2: 
-- CustomExecutor.java : this calss represnt the priority generic task .
-- Tests.java : this class test the other class and check the priorty task.
+- Task.java: This class represents a task and includes an enum class TaskType that defines the three types of tasks (Computational, IO-Bound, and Unknown).
+
+- CustomExecutor.java: This class represents the priority generic task system and contains functions for adding tasks to the queue and executing them in the correct order.
+
+- Tests.java: This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.
+
 
 # How to Run:
 Firstly, to run this project, download the files from the github.

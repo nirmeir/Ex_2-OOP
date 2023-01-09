@@ -8,12 +8,12 @@
 - This project contains two parts:
 
 ### Part 1:
-- In this part, we compare the runtime of three methods for counting the number of lines in a set of text files:
+ In this part, we compare the runtime of three methods for counting the number of lines in a set of text files:
   
 - One method that counts the lines sequentially, without using threads
 - One method that counts the lines concurrently using threads
 - One method that counts the lines concurrently using a thread pool
-- The following classes and functions are included in this part: 
+ The following classes and functions are included in this part: 
 
 #### Code Description:
 

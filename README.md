@@ -16,21 +16,25 @@
 <br />
  The following classes and functions are included in this part: 
 
-#### Code Description:
+### Code Description:
 
-##### Ex2_1.java: This class contains the following functions:
+### Ex2_1.java:
+This class contains the following functions:<br />
+
 - createTextFiles: This function creates a specified number of text files with random numbers of lines. The function returns the names of the created files.
 - getNumOfLines: This function calculates the number of lines in the text files sequentially and prints the time taken to do so.
 - getNumOfLinesThreads: This function calculates the number of lines in the text files concurrently using threads and prints the time taken to do so.
 - getNumOfLinesThreadPool: This function calculates the number of lines in the text files concurrently using a thread pool and prints the time taken to do so.
 
-##### Ex2_3.java: This class extends the Thread class and is used to calculate the number of lines in a single text file concurrently using threads. It contains the following functions:
+### Ex2_3.java:
+This class extends the Thread class and is used to calculate the number of lines in a single text file concurrently using threads. It contains the following functions <br />
 - Ex2_3: This function creates an instance of the class with the name of the file to be processed.
 - getTotalNumLines: This function returns the total number of lines processed by all instances of the class.
 - run: This function reads the lines in the file and increments a total count of lines processed by all instances of the class.
 
 
-##### Ex2_4.java: This class implements the Callable interface and is used to calculate the number of lines in a single text file concurrently using a thread pool. It contains the following function:
+### Ex2_4.java:
+This class implements the Callable interface and is used to calculate the number of lines in a single text file concurrently using a thread pool. It contains the following function:<br />
 
 - call: This function reads the lines in the file and returns the number of lines in the file.
 

@@ -1,37 +1,37 @@
 
 # EX2 
 
--Authors: Nir Meir, Shai Moshe
+- Authors: Nir Meir, Shai Moshe
 
 ## About the Project:
--This is task 3  in our OOP course.
--This project contains two parts:
+- This is task 3  in our OOP course.
+- This project contains two parts:
 
 ### Part 1:
--In this part, we compare the runtime of three methods for counting the number of lines in a set of text files:
+- In this part, we compare the runtime of three methods for counting the number of lines in a set of text files:
   
--One method that counts the lines sequentially, without using threads
--One method that counts the lines concurrently using threads
--One method that counts the lines concurrently using a thread pool
--The following classes and functions are included in this part: 
+- One method that counts the lines sequentially, without using threads
+- One method that counts the lines concurrently using threads
+- One method that counts the lines concurrently using a thread pool
+- The following classes and functions are included in this part: 
 
 #### Code Description:
 
 ##### Ex2_1.java: This class contains the following functions:
--createTextFiles: This function creates a specified number of text files with random numbers of lines. The function returns the names of the created files.
-  -getNumOfLines: This function calculates the number of lines in the text files sequentially and prints the time taken to do so.
-  -getNumOfLinesThreads: This function calculates the number of lines in the text files concurrently using threads and prints the time taken to do so.
-  -getNumOfLinesThreadPool: This function calculates the number of lines in the text files concurrently using a thread pool and prints the time taken to do so.
+- createTextFiles: This function creates a specified number of text files with random numbers of lines. The function returns the names of the created files.
+  - getNumOfLines: This function calculates the number of lines in the text files sequentially and prints the time taken to do so.
+  - getNumOfLinesThreads: This function calculates the number of lines in the text files concurrently using threads and prints the time taken to do so.
+  - getNumOfLinesThreadPool: This function calculates the number of lines in the text files concurrently using a thread pool and prints the time taken to do so.
 
 ##### Ex2_3.java: This class extends the Thread class and is used to calculate the number of lines in a single text file concurrently using threads. It contains the following functions:
--Ex2_3: This function creates an instance of the class with the name of the file to be processed.
--getTotalNumLines: This function returns the total number of lines processed by all instances of the class.
--run: This function reads the lines in the file and increments a total count of lines processed by all instances of the class.
+- Ex2_3: This function creates an instance of the class with the name of the file to be processed.
+- getTotalNumLines: This function returns the total number of lines processed by all instances of the class.
+- run: This function reads the lines in the file and increments a total count of lines processed by all instances of the class.
 
 
 ##### Ex2_4.java: This class implements the Callable interface and is used to calculate the number of lines in a single text file concurrently using a thread pool. It contains the following function:
 
--call: This function reads the lines in the file and returns the number of lines in the file.
+- call: This function reads the lines in the file and returns the number of lines in the file.
 
 
 

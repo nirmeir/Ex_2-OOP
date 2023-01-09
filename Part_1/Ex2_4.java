@@ -14,6 +14,9 @@ public class Ex2_4 implements Callable<Integer> {
         this.fileName = fileName;
     }
 
+    /**
+     * @return Implementation of the Callable interface
+     */
     @Override
     public Integer call() {
         int numLines = 0;

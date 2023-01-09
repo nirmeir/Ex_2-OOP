@@ -14,6 +14,13 @@ import java.util.concurrent.Future;
 
 public class Ex2_1 {
 
+
+    /**
+     * @param n number of threads
+     * @param seed seed for random number generator
+     * @param bound bound for random number generator
+     * @return list of random numbers
+     */
     public static String[] createTextFiles(int n, int seed, int bound) {
         Random random = new Random(seed);
         String[] fileNames = new String[n];
@@ -33,8 +40,12 @@ public class Ex2_1 {
     }
 
 
+    /**
+     * @param fileNames list of file names
+     * @return list of lines
+     */
     public static int getNumOfLines(String[] fileNames) {
-        //start time
+
         long startTime = System.currentTimeMillis();
         int numOfLines = 0;
         for (String fileName : fileNames) {
@@ -48,34 +59,41 @@ public class Ex2_1 {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        //end time
+
         long endTime = System.currentTimeMillis();
         System.out.println("Time taken: " + (endTime - startTime) + "ms");
         return numOfLines;
+
+
     }
 
-    public static int getNumOfLinesThreads(String[] fileNames) {
-        //start time
+
+    /**
+     * @param fileNames list of file names
+     * @return Total num of lines
+     * @throws InterruptedException
+     */
+    public synchronized static int getNumOfLinesThreads(String[] fileNames) throws InterruptedException {
+
         long startTime = System.currentTimeMillis();
-        int numLines = 0;
+
         Thread[] threads = new Thread[fileNames.length];
+
         for (int i = 0; i < fileNames.length; i++) {
             threads[i] = new Thread(new Ex2_3(fileNames[i]));
             threads[i].start();
+            threads[i].join();
+
         }
-        for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        //end time
         long endTime = System.currentTimeMillis();
         System.out.println("Time taken: " + (endTime - startTime) + "ms");
         return Ex2_3.getTotalNumLines();
     }
 
+    /**
+     * @param fileNames list of file names
+     * @return Total num of lines
+     */
     public static int getNumOfLinesThreadPool(String[] fileNames) {
         //start time
         long startTime = System.currentTimeMillis();
@@ -100,8 +118,8 @@ public class Ex2_1 {
     }
 
     //main method
-    public static void main(String[] args) {
-        String[] fileNames = createTextFiles(5, 100, 1000);
+    public static void main(String[] args) throws InterruptedException {
+        String[] fileNames = createTextFiles(200, 100, 1000);
         System.out.println("Number of lines: " + getNumOfLines(fileNames));
         System.out.println("Number of lines: " + getNumOfLinesThreads(fileNames));
         System.out.println("Number of lines: " + getNumOfLinesThreadPool(fileNames));

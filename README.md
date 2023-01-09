@@ -13,7 +13,7 @@
 - One method that counts the lines sequentially, without using threads
 - One method that counts the lines concurrently using threads
 - One method that counts the lines concurrently using a thread pool
- The following classes and functions are included in this part: 
+/n The following classes and functions are included in this part: 
 
 #### Code Description:
 

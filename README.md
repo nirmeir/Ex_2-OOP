@@ -1,41 +1,40 @@
 
 # EX2 
 
-- Nir Meir 
-- Shai Moshe 
+-Authors: Nir Meir, Shai Moshe
 
-# About the Project:
-This is task 3  in our OOP course.
-the task have 2 parts.
+## About the Project:
+-This is task 3  in our OOP course.
+-This project contains two parts:
 
-# Part 1:
-  this part we want to check the diffrent of runtime ,without thread , with thread , with threadpool.
-  by using the same function.  
-
-# Code Description:
-
-- EX2_1.java : create Text Files calculate the numbers of lines by with Threads , Threadspool without Threads and show the diffrent.
-- EX2_3.java : this class extends Thread for calculate the number of lines.
-- EX2_4.java : this class implements Callable<Integer> for Threadpool calculate the number of lines.
-
-
-# Functions Description
-### EX2_1 functions:
-- createTextFiles - This function create new text files n is the numbers of files with randoms of lines rerturn the files.
-- getNumOfLines - This function calculate the numbers of lines without Threads and print the time calculte of the count.
-- getNumOfLinesThreads - This function is synchronized , calculate the numbers of lines with Threads and print the time calculte of the count.
-- getNumOfLinesThreadPool - This function calculate the numbers of lines with Threadspool and print the time calculte of the count.
-
-
-### EX2_3:
-- Ex2_3 - this function build object of the class with the file name .
-- getTotalNumLines - This function return the total numbers of lines.
-- run - this function is synchronized , she read lines and count the lines for totalNumLines , like we need to impliment because it thread.
-
-### EX2_4:
-- Ex2_4 - this function build object of the class with the file name .
-- call - This function return the total numbers of lines its , like we need to impliment because it Callable.
+### Part 1:
+-In this part, we compare the runtime of three methods for counting the number of lines in a set of text files:
   
+-One method that counts the lines sequentially, without using threads
+-One method that counts the lines concurrently using threads
+-One method that counts the lines concurrently using a thread pool
+-The following classes and functions are included in this part: 
+
+#### Code Description:
+
+##### Ex2_1.java: This class contains the following functions:
+-createTextFiles: This function creates a specified number of text files with random numbers of lines. The function returns the names of the created files.
+  -getNumOfLines: This function calculates the number of lines in the text files sequentially and prints the time taken to do so.
+  -getNumOfLinesThreads: This function calculates the number of lines in the text files concurrently using threads and prints the time taken to do so.
+  -getNumOfLinesThreadPool: This function calculates the number of lines in the text files concurrently using a thread pool and prints the time taken to do so.
+
+##### Ex2_3.java: This class extends the Thread class and is used to calculate the number of lines in a single text file concurrently using threads. It contains the following functions:
+-Ex2_3: This function creates an instance of the class with the name of the file to be processed.
+-getTotalNumLines: This function returns the total number of lines processed by all instances of the class.
+-run: This function reads the lines in the file and increments a total count of lines processed by all instances of the class.
+
+
+##### Ex2_4.java: This class implements the Callable interface and is used to calculate the number of lines in a single text file concurrently using a thread pool. It contains the following function:
+
+-call: This function reads the lines in the file and returns the number of lines in the file.
+
+
+
   # xml diagram 
   ![](https://i.ibb.co/qYBxs2F/Screenshot-2023-01-09-211932.jpg)
   

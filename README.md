@@ -14,7 +14,6 @@
 - One method that counts the lines concurrently using threads
 - One method that counts the lines concurrently using a thread pool
 <br />
- The following classes and functions are included in this part: 
 
 ### Code Description:
 

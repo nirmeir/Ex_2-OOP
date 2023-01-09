@@ -36,6 +36,7 @@ This class extends the Thread class and is used to calculate the number of lines
 ### Ex2_4.java:
 This class implements the Callable interface and is used to calculate the number of lines in a single text file concurrently using a thread pool. It contains the following function:<br />
 
+- Ex2_4: This function creates an instance of the class with the name of the file to be processed.
 - call: This function reads the lines in the file and returns the number of lines in the file.
 
 

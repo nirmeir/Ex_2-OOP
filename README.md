@@ -36,7 +36,11 @@ the task have 2 parts.
 - Ex2_4 - this function build object of the class with the file name .
 - call - This function return the total numbers of lines its , like we need to impliment because it Callable.
 
-![](https://i.ibb.co/8PkjdrC/Screenshot.jpg)
+  # run time  result
+  as we see in the picture the numbers of files is 200.
+  the result we get is that the thread is the faster then the threadpool , and after a lot of time without thread.
+  
+  ![](https://i.ibb.co/8PkjdrC/Screenshot.jpg)
 
 # Part 2:
   this part we want to impliment the priority task that we can change the ordert of the task with threadpool.

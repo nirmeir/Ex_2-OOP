@@ -36,7 +36,14 @@ the task have 2 parts.
 - Ex2_4 - this function build object of the class with the file name .
 - call - This function return the total numbers of lines its , like we need to impliment because it Callable.
 
+# Part 2:
+  this part we want to impliment the priority task that we can change the ordert of the task with threadpool.
+  
+# Code Description:
 
+- Task.java this class represent task with enum class Tasktype that given at the EX2: 
+- CustomExecutor.java : .
+- Tests.java : this class test the other class and check the priorty task.
 
 # How to Run:
 Firstly, to run this project, download the files from the github.

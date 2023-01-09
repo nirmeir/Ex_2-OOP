@@ -36,6 +36,8 @@ the task have 2 parts.
 - Ex2_4 - this function build object of the class with the file name .
 - call - This function return the total numbers of lines its , like we need to impliment because it Callable.
 
+![](https://ibb.co/Dwd789J)
+
 # Part 2:
   this part we want to impliment the priority task that we can change the ordert of the task with threadpool.
   

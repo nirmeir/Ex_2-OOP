@@ -35,7 +35,11 @@ the task have 2 parts.
 ### EX2_4:
 - Ex2_4 - this function build object of the class with the file name .
 - call - This function return the total numbers of lines its , like we need to impliment because it Callable.
-
+  
+  # xml diagram 
+  ![](https://i.ibb.co/qYBxs2F/Screenshot-2023-01-09-211932.jpg)
+  
+  
   # run time  result
   as we see in the picture the numbers of files is 200.
   the result we get is that the threadpool is the faster then the threads , and after a lot of time without threads.

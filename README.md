@@ -55,7 +55,7 @@ This class implements the Callable interface and is used to calculate the number
  
  
 
-To run this project, download the files and open them in an IDE such as IntelliJ. Then, open the Tests class and run it to test the priority generic task system.
+
   
 # Code Description:
 
@@ -67,9 +67,7 @@ To run this project, download the files and open them in an IDE such as IntelliJ
 
 
 # How to Run:
-Firstly, to run this project, download the files from the github.
-Secondly, open the pom.xml file from Intellij or any different IDE.
-Open the Test class and Run the file.
+To run this project, download the files and open them in an IDE such as IntelliJ. Then, open the Tests class and run it to test the priority generic task system.
 
 
 

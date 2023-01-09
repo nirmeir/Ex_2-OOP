@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="40.5" y="-94.5">com</node>
+    <node x="3092.0" y="-94.5">images</node>
+    <node x="2907.0" y="-94.5">netscape</node>
+    <node x="2763.5" y="-94.5">org</node>
+    <node x="2483.0" y="-94.5">toolbarButtonGraphics</node>
+    <node x="2323.5" y="-94.5">sun</node>
+    <node x="2165.0" y="-94.5">jdk</node>
+    <node x="1963.0" y="-94.5">META-INF</node>
+    <node x="1729.0" y="-339.0">Ex2_3</node>
+    <node x="1443.5" y="-94.5">groovyjarjarasm</node>
+    <node x="1671.5" y="-151.0">Ex2_1</node>
+    <node x="1282.5" y="-94.5">java</node>
+    <node x="1112.0" y="-94.5">groovy</node>
+    <node x="959.0" y="-94.5">javax</node>
+    <node x="1901.5" y="-327.0">Ex2_4</node>
+    <node x="717.0" y="-94.5">groovyjarjarpicocli</node>
+    <node x="438.5" y="-94.5">groovyjarjarcommonscli</node>
+    <node x="203.0" y="-94.5">groovyjarjarantlr</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Ex2_1" target="Ex2_4" relationship="CREATE">
+      <point x="0.0" y="-71.0" />
+      <point x="1800.0" y="-178.40552563802387" />
+      <point x="1960.0" y="-178.40552563802387" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="Ex2_1" target="Ex2_3" relationship="CREATE">
+      <point x="0.0" y="-71.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0650872817955113" showDependencies="true" x="1975.5707681269578" y="-1.3977501486111237" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

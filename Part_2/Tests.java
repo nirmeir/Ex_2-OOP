@@ -12,53 +12,46 @@ import java.util.concurrent.TimeoutException;
 public class Tests {
 
     public static final Logger logger = LoggerFactory.getLogger(Tests.class);
+
     @Test
     public void partialTest() {
         CustomExecutor customExecutor = new CustomExecutor();
-        var task = Task.createTask(()->{
+        var task = Task.createTask(() -> {
             int sum = 0;
             for (int i = 1; i <= 10; i++) {
                 sum += i;
             }
             return sum;
         }, Task.TaskType.COMPUTATIONAL);
+
         var sumTask = customExecutor.submit(task);
 
         final int sum;
         try {
-            sum = (int) sumTask.get(1, TimeUnit.SECONDS);
+            sum = sumTask.get(1, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             throw new RuntimeException(e);
         }
 
-        logger.info(()-> "Sum of 1 through 10 = " + sum);
+        logger.info(() -> "Sum of 1 through 10 = " + sum);
 
 
-        Callable<Double> callable1 = ()-> {
+        Callable<Double> callable1 = () -> {
             return 1000 * Math.pow(1.02, 5);
         };
 
-        Callable<String> callable2 = ()-> {
+        Callable<String> callable2 = () -> {
             StringBuilder sb = new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             return sb.reverse().toString();
         };
 
 
-
-        var priceTask = customExecutor.submit(()-> {
+        var priceTask = customExecutor.submit(() -> {
             return 1000 * Math.pow(1.02, 5);
         }, Task.TaskType.COMPUTATIONAL);
 
-        var priceTask2 = customExecutor.submit(()-> {
-            return 1000 * Math.pow(1.02, 10);
-        }, Task.TaskType.COMPUTATIONAL);
-        final Double totalPrice2;
-
-
-
 
         var reverseTask = customExecutor.submit(callable2, Task.TaskType.IO);
-
 
 
         final Double totalPrice;
@@ -66,9 +59,10 @@ public class Tests {
 
 
         try {
-            totalPrice = (Double) priceTask.get();
-            reversed = (String) reverseTask.get();
 
+
+            totalPrice = priceTask.get();
+            reversed = reverseTask.get();
 
 
         } catch (InterruptedException | ExecutionException e) {
@@ -76,14 +70,60 @@ public class Tests {
         }
 
 
+        logger.info(() -> "Reversed String = " + reversed);
 
-        logger.info(()-> "Reversed String = " + reversed);
 
+        logger.info(() -> String.valueOf("Total Price = " + totalPrice));
 
-        logger.info(()->String.valueOf("Total Price = " + totalPrice));
-
-        logger.info(()-> "Current maximum priority = " + customExecutor.getCurrentMax());
+        logger.info(() -> "Current maximum priority = " + customExecutor.getCurrentMax());
         customExecutor.gracefullyTerminate();
+    }
+
+    @Test
+    public void privateTest() throws ExecutionException, InterruptedException {
+//create tests to check the priority
+
+        CustomExecutor customExecutor = new CustomExecutor();
+
+        for (int j = 0; j < 2; j++) {
+
+            Callable<String> callable2 = () -> {
+                StringBuilder sb = new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                return sb.reverse().toString();
+            };
+
+
+            var task = Task.createTask(() -> {
+                int sum = 0;
+                for (int i = 1; i <= 10; i++) {
+                    sum += i;
+                }
+                return sum;
+            }, Task.TaskType.COMPUTATIONAL);
+
+
+
+
+            var reverseTask = customExecutor.submit(callable2, Task.TaskType.IO);
+            final String reversed;
+            reversed = reverseTask.get();
+
+
+            var sumTask = customExecutor.submit(task);
+            final int sum;
+            try {
+                sum = sumTask.get(1, TimeUnit.SECONDS);
+            } catch (InterruptedException | ExecutionException | TimeoutException e) {
+                throw new RuntimeException(e);
+            }
+
+            logger.info(() -> "Reversed String = " + reversed);
+            logger.info(() -> "Sum of 1 through 10 = " + sum);
+
+
+        }
+
+
     }
 }
 

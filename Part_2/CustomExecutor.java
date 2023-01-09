@@ -1,51 +1,63 @@
 package Part_2;
-import java.util.Arrays;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+
 import java.util.Comparator;
-import java.util.List;
 import java.util.concurrent.*;
 
 public class CustomExecutor {
-    private final ThreadPoolExecutor customExecutor;
+    public static final Logger logger = LoggerFactory.getLogger(CustomExecutor.class);
+
+    private ThreadPoolExecutor customExecutor;
     private int maxPriority=0;
     int numOfCores = Runtime.getRuntime().availableProcessors();
     int corePoolSize = numOfCores/2;
     int maxPoolSize = numOfCores-1;
 
-
     public CustomExecutor() {
-
-        customExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 300, TimeUnit.MILLISECONDS, new PriorityBlockingQueue<Runnable>(10, new Comparator<Runnable>() {
-            @Override
-            public int compare(Runnable o1, Runnable o2) {
-                return ((Task) o1).getType().getPriorityValue() - ((Task) o2).getType().getPriorityValue();
-            }
-
-        }));
-
+        customExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 300, TimeUnit.MILLISECONDS, new PriorityBlockingQueue<Runnable>());
 
     }
 
-    // override the execute method with callables
-    public <T> Future<T> submit(Task task) {
+
+    /**
+     * @param task - the task to be executed
+     * @param <T> - the type of the task result
+     * @return - a Future representing pending completion of the task
+     */
+    public <T> Future<T> submit(Task<T> task) {
         this.maxPriority = Math.max(this.maxPriority, task.getType().getPriorityValue());
-
         return customExecutor.submit(task.getCallable());
     }
 
-    public <T> Future<T> submit(Callable call, Task.TaskType type) {
+
+    /**
+     * @param call - the task to be executed
+     * @param type - the type of the task
+     * @param <T> - the type of the task result
+     * @return
+     */
+    public <T> Future<T> submit(Callable<T> call, Task.TaskType type) {
         this.maxPriority = Math.max(this.maxPriority, type.getPriorityValue());
-        Task task = new Task(call, type);
-
+        Task<T> task = Task.createTask (call, type);
         return customExecutor.submit(task.getCallable());
     }
 
+    /**
+     * @param  - shutdown the tasks in the queue
+     */
     public void gracefullyTerminate() {
         ((ExecutorService) customExecutor).shutdown();
     }
 
+    /**
+     * @return - the max priority of the tasks in the queue
+     */
     public int getCurrentMax() {
         return this.maxPriority;
     }
+
+
 
 
 }

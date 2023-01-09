@@ -38,17 +38,18 @@ the task have 2 parts.
 
   # run time  result
   as we see in the picture the numbers of files is 200.
-  the result we get is that the thread is the faster then the threadpool , and after a lot of time without thread.
+  the result we get is that the threadpool is the faster then the threads , and after a lot of time without threads.
   
-  ![](https://i.ibb.co/8PkjdrC/Screenshot.jpg)
+  ![](https://i.ibb.co/v4k0Nmp/Screenshot-2023-01-09-211217.jpg)
 
 # Part 2:
-  this part we want to impliment the priority task that we can change the ordert of the task with threadpool.
+  this part we want to impliment the priority generic task that we can change the order of the task with threadpool.
+  we have 3 type of task
   
 # Code Description:
 
 - Task.java this class represent task with enum class Tasktype that given at the EX2: 
-- CustomExecutor.java : .
+- CustomExecutor.java : this calss represnt the priority generic task .
 - Tests.java : this class test the other class and check the priorty task.
 
 # How to Run:

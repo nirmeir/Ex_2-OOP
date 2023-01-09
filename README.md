@@ -23,14 +23,14 @@ the task have 2 parts.
 ### EX2_1 functions:
 - createTextFiles - This function create new text files n is the numbers of files with randoms of lines rerturn the files.
 - getNumOfLines - This function calculate the numbers of lines without Threads and print the time calculte of the count.
-- getNumOfLinesThreads - This function calculate the numbers of lines with Threads and print the time calculte of the count.
+- getNumOfLinesThreads - This function is synchronized , calculate the numbers of lines with Threads and print the time calculte of the count.
 - getNumOfLinesThreadPool - This function calculate the numbers of lines with Threadspool and print the time calculte of the count.
 
 
 ### EX2_3:
 - Ex2_3 - this function build object of the class with the file name .
 - getTotalNumLines - This function return the total numbers of lines.
-- run - this function read lines and count the lines for totalNumLines , like we need to impliment because it thread.
+- run - this function is synchronized , she read lines and count the lines for totalNumLines , like we need to impliment because it thread.
 
 ### EX2_4:
 - Ex2_4 - this function build object of the class with the file name .
@@ -48,7 +48,10 @@ the task have 2 parts.
 
 # Part 2:
   this part we want to impliment the priority generic task that we can change the order of the task with threadpool.
-  we have 3 type of task
+  we have 3 type of task.
+  -Computational Task,IO-Bound Task,Unknown Task
+ 
+  
   
 # Code Description:
 

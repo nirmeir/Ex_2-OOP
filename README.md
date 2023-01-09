@@ -20,9 +20,9 @@
 
 ##### Ex2_1.java: This class contains the following functions:
 - createTextFiles: This function creates a specified number of text files with random numbers of lines. The function returns the names of the created files.
-  - getNumOfLines: This function calculates the number of lines in the text files sequentially and prints the time taken to do so.
-  - getNumOfLinesThreads: This function calculates the number of lines in the text files concurrently using threads and prints the time taken to do so.
-  - getNumOfLinesThreadPool: This function calculates the number of lines in the text files concurrently using a thread pool and prints the time taken to do so.
+- getNumOfLines: This function calculates the number of lines in the text files sequentially and prints the time taken to do so.
+- getNumOfLinesThreads: This function calculates the number of lines in the text files concurrently using threads and prints the time taken to do so.
+- getNumOfLinesThreadPool: This function calculates the number of lines in the text files concurrently using a thread pool and prints the time taken to do so.
 
 ##### Ex2_3.java: This class extends the Thread class and is used to calculate the number of lines in a single text file concurrently using threads. It contains the following functions:
 - Ex2_3: This function creates an instance of the class with the name of the file to be processed.

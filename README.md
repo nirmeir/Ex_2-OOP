@@ -59,11 +59,16 @@ This class implements the Callable interface and is used to calculate the number
   
 # Code Description:
 
-- Task.java: This class represents a task and includes an enum class TaskType that defines the three types of tasks (Computational, IO-Bound, and Unknown).
+### Task.java: 
+This class represents a task and includes an enum class TaskType that defines the three types of tasks (Computational, IO-Bound, and Unknown).<br />
 
-- CustomExecutor.java: This class represents the priority generic task system and contains functions for adding tasks to the queue and executing them in the correct order.
+### CustomExecutor.java: 
+This class represents the priority generic task system and contains functions for adding tasks to the queue and executing them in the correct order.<br />
+- This is a custom implementation of a thread pool executor that allows you to submit tasks with different priorities. The thread pool has a fixed number of core threads and a maximum number of threads and uses a priority blocking queue to hold the tasks waiting to be executed. The number of core threads is equal to half the number of cores on the machine, and the maximum number of threads is equal to the number of cores minus 1.
 
-- Tests.java: This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.
+
+
+### Tests.java: This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.<br />
 
 
 # How to Run:

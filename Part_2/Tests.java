@@ -4,10 +4,10 @@ import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Tests {
 
@@ -45,36 +45,26 @@ public class Tests {
             return sb.reverse().toString();
         };
 
-
         var priceTask = customExecutor.submit(() -> {
             return 1000 * Math.pow(1.02, 5);
         }, Task.TaskType.COMPUTATIONAL);
 
-
         var reverseTask = customExecutor.submit(callable2, Task.TaskType.IO);
-
 
         final Double totalPrice;
         final String reversed;
 
-
         try {
-
 
             totalPrice = priceTask.get();
             reversed = reverseTask.get();
-
 
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
 
-
         logger.info(() -> "Reversed String = " + reversed);
-
-
-        logger.info(() -> String.valueOf("Total Price = " + totalPrice));
-
+        logger.info(() -> "Total Price = " + totalPrice);
         logger.info(() -> "Current maximum priority = " + customExecutor.getCurrentMax());
         customExecutor.gracefullyTerminate();
     }
@@ -92,7 +82,6 @@ public class Tests {
                 return sb.reverse().toString();
             };
 
-
             var task = Task.createTask(() -> {
                 int sum = 0;
                 for (int i = 1; i <= 10; i++) {
@@ -100,8 +89,6 @@ public class Tests {
                 }
                 return sum;
             }, Task.TaskType.COMPUTATIONAL);
-
-
 
 
             var reverseTask = customExecutor.submit(callable2, Task.TaskType.IO);
@@ -112,7 +99,7 @@ public class Tests {
             var sumTask = customExecutor.submit(task);
             final int sum;
             try {
-                sum = (int) sumTask.get(1, TimeUnit.SECONDS);
+                sum = sumTask.get(1, TimeUnit.SECONDS);
             } catch (InterruptedException | ExecutionException | TimeoutException e) {
                 throw new RuntimeException(e);
             }
@@ -121,7 +108,49 @@ public class Tests {
             logger.info(() -> "Sum of 1 through 10 = " + sum);
         }
 
-        logger.info(() -> "Max priority" +customExecutor.getCurrentMax());
+        logger.info(() -> "Max priority" + customExecutor.getCurrentMax());
 
     }
+
+    @Test
+    public void priorityTest() throws InterruptedException, ExecutionException {
+        CustomExecutor customExecutor = new CustomExecutor();
+        CountDownLatch latch = new CountDownLatch(1);
+
+        // Create high priority task
+        var highPriorityTask = Task.createTask(() -> {
+            latch.await();
+            return "High Priority Task";
+        }, Task.TaskType.IO);
+
+        // Create low priority task
+        var lowPriorityTask = Task.createTask(() -> {
+            return "Low Priority Task";
+        }, Task.TaskType.COMPUTATIONAL);
+
+        // Submit the high priority task
+        customExecutor.submit(highPriorityTask);
+        customExecutor.submit(lowPriorityTask);
+
+
+        Thread.sleep(500);
+        latch.countDown();
+
+        // Submit the low priority task
+
+        var HP = customExecutor.submit(highPriorityTask);
+        var LP = customExecutor.submit(lowPriorityTask);
+
+        // Get the results of the tasks
+        String highPriorityTaskResult = HP.get();
+        String lowPriorityTaskResult = LP.get();
+
+        // Check if the high priority task was executed before the low priority task
+        assertEquals("High Priority Task", highPriorityTaskResult);
+        assertEquals("Low Priority Task", lowPriorityTaskResult);
+
+        customExecutor.gracefullyTerminate();
+    }
+
+
 }

@@ -85,7 +85,7 @@ public class Tests {
 
         CustomExecutor customExecutor = new CustomExecutor();
 
-        for (int j = 0; j < 2; j++) {
+        for (int j = 0; j < 60; j++) {
 
             Callable<String> callable2 = () -> {
                 StringBuilder sb = new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -112,18 +112,16 @@ public class Tests {
             var sumTask = customExecutor.submit(task);
             final int sum;
             try {
-                sum = sumTask.get(1, TimeUnit.SECONDS);
+                sum = (int) sumTask.get(1, TimeUnit.SECONDS);
             } catch (InterruptedException | ExecutionException | TimeoutException e) {
                 throw new RuntimeException(e);
             }
 
             logger.info(() -> "Reversed String = " + reversed);
             logger.info(() -> "Sum of 1 through 10 = " + sum);
-
-
         }
 
+        logger.info(() -> "Max priority" +customExecutor.getCurrentMax());
 
     }
 }
-

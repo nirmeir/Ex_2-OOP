@@ -16,11 +16,11 @@ public class Task<T> {
     /**
      * @param callable - The callable object to be executed
      * @param type - The type of the task
-         * @param <T> - Representing the generic value
+     * @param <T> - Representing the generic value
      * @return - A new Task object
      */
     public static <T> Task<T>createTask(Callable<T> callable, TaskType type) {
-            return new Task(callable, type);
+        return new Task(callable, type);
 
     }
 
@@ -59,7 +59,7 @@ public class Task<T> {
 
         private int typePriority;
 
-            TaskType(int priority){
+        TaskType(int priority){
             if (validatePriority(priority)) typePriority = priority;
             else
                 throw new IllegalArgumentException("Priority is not an integer");
@@ -89,7 +89,6 @@ public class Task<T> {
             return true;
         }
 
+    }
 }
-}
-
 

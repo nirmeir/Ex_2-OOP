@@ -77,6 +77,15 @@ This is a custom implementation of an Executor in Java. An executor is an object
 - getCurrentMax():This method returns the max priority of the task in the queue. It can be used to check the priority of the highest priority task currently in the queue.
 - CustomSingleThreadPoolExecutor class :class has a special newTaskFor(Runnable runnable, T value) method which is used by the executor when creating new tasks. It will return a CustomFutureTask instead of the default FutureTask.
  
+ 
+###  FutureTask.java
+ The CustomFutureTask class is a custom implementation of the FutureTask class that adds an additional type field, which represents the priority of the task. This class is used by the CustomExecutor to submit tasks for execution, and the PriorityBlockingQueue to determine the order of execution of the tasks based on priority.
+ 
+ - CustomFutureTask(Callable<T> callable, Task.TaskType type): This constructor creates a new CustomFutureTask object with the specified callable task and type priority. The callable parameter represents the actual task that is to be executed, and the type parameter represents the priority of the task. The constructor initializes the FutureTask with callable, sets type field with the passed task type and priority field with the priority of passed task type.
+ - CustomFutureTask(Runnable runnable, T result, Task.TaskType type): This constructor creates a new CustomFutureTask object with the specified runnable task, result and type priority. The runnable parameter represents the actual task that is to be executed, the result parameter represents the value that the task computes, and the type parameter represents the priority of the task. The constructor initializes the FutureTask with runnable and result, sets type field with the passed task type and priority field with the priority of passed task type.
+ - compareTo(CustomFutureTask<T> otherTask) : This method is used to compare the priority of this task to the priority of another task. This method is used by the PriorityBlockingQueue in the CustomExecutor to determine the order in which tasks are executed. The method compares the priority field of the two tasks and returns a negative integer if this task has a lower priority, zero if the two tasks have the same priority, and a positive integer if this task has a higher priority.
+ - getType(): This method returns the TaskType object that represents the priority of the task.
+ 
 ### Tests.java:
  This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.<br />
 

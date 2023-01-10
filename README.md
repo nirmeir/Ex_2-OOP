@@ -70,7 +70,8 @@ This class represents the priority generic task system and contains functions fo
 
 ### Tests.java: This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.<br />
 
-
+ # xml diagram 
+ ![](https://ibb.co/pn3pt9g)
 # How to Run:
 To run this project, download the files and open them in an IDE such as IntelliJ. Then, open the Tests class and run it to test the priority generic task system.
 

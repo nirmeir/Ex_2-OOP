@@ -71,7 +71,7 @@ public class Tests {
 
     @Test
     public void privateTest() throws ExecutionException, InterruptedException {
-//create tests to check the priority
+
 
         CustomExecutor customExecutor = new CustomExecutor();
 
@@ -117,18 +117,16 @@ public class Tests {
         CustomExecutor customExecutor = new CustomExecutor();
         CountDownLatch latch = new CountDownLatch(1);
 
-        // Create high priority task
+
         var highPriorityTask = Task.createTask(() -> {
             latch.await();
             return "High Priority Task";
         }, Task.TaskType.IO);
 
-        // Create low priority task
         var lowPriorityTask = Task.createTask(() -> {
             return "Low Priority Task";
         }, Task.TaskType.COMPUTATIONAL);
 
-        // Submit the high priority task
         customExecutor.submit(highPriorityTask);
         customExecutor.submit(lowPriorityTask);
 
@@ -136,16 +134,13 @@ public class Tests {
         Thread.sleep(500);
         latch.countDown();
 
-        // Submit the low priority task
 
         var HP = customExecutor.submit(highPriorityTask);
         var LP = customExecutor.submit(lowPriorityTask);
 
-        // Get the results of the tasks
         String highPriorityTaskResult = HP.get();
         String lowPriorityTaskResult = LP.get();
 
-        // Check if the high priority task was executed before the low priority task
         assertEquals("High Priority Task", highPriorityTaskResult);
         assertEquals("Low Priority Task", lowPriorityTaskResult);
 

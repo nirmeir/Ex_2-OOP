@@ -88,7 +88,8 @@ This is a custom implementation of an Executor in Java. An executor is an object
  
 ### Tests.java:
  This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.<br />
-
+![](https://i.ibb.co/TtWF5W8/Screenshot-2023-01-10-185246.jpg)
+ 
  # xml diagram 
  ![](https://i.ibb.co/wYK19xT/Screenshot-2023-01-10-181924.jpg)
 # How to Run:

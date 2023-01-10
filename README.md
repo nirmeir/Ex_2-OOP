@@ -62,6 +62,12 @@ This class implements the Callable interface and is used to calculate the number
 ### Task.java: 
 This class represents a task and includes an enum class TaskType that defines the three types of tasks (Computational, IO-Bound, and Unknown).<br />
 
+- Task(Callable callable, TaskType type):This constructor creates a new Task object with the specified callable task and type priority. The callable parameter represents the actual task that is to be executed, and the type parameter represents the priority of the task.
+- createTask(Callable<T> callable, TaskType type):This is a static factory method which creates a new Task object with the specified callable task and type priority. It's a simple method to create a task object by passing required parameters. It returns the created task object.
+- getCallable():This method returns the Callable object that represents the actual task that is to be executed by the CustomExecutor.
+- getType():This method returns the TaskType object that represents the priority of the task.
+- TaskType given by the EX2 files.
+
 ### CustomExecutor.java: 
 This is a custom implementation of an Executor in Java. An executor is an object that can run multiple tasks in parallel, and is an alternative to using explicit threads. This executor uses a custom implementation of the ThreadPoolExecutor class called CustomSingleThreadPoolExecutor and a PriorityBlockingQueue as the workQueue. A PriorityBlockingQueue is a type of queue that orders its elements according to their natural ordering or by a provided comparator
 

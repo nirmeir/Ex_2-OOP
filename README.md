@@ -63,12 +63,16 @@ This class implements the Callable interface and is used to calculate the number
 This class represents a task and includes an enum class TaskType that defines the three types of tasks (Computational, IO-Bound, and Unknown).<br />
 
 ### CustomExecutor.java: 
-This class represents the priority generic task system and contains functions for adding tasks to the queue and executing them in the correct order.<br />
-- This is a custom implementation of a thread pool executor that allows you to submit tasks with different priorities. The thread pool has a fixed number of core threads and a maximum number of threads and uses a priority blocking queue to hold the tasks waiting to be executed. The number of core threads is equal to half the number of cores on the machine, and the maximum number of threads is equal to the number of cores minus 1.
+This is a custom implementation of an Executor in Java. An executor is an object that can run multiple tasks in parallel, and is an alternative to using explicit threads. This executor uses a custom implementation of the ThreadPoolExecutor class called CustomSingleThreadPoolExecutor and a PriorityBlockingQueue as the workQueue. A PriorityBlockingQueue is a type of queue that orders its elements according to their natural ordering or by a provided comparator
 
-
-
-### Tests.java: This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.<br />
+-submit(Callable<T> call, Task.TaskType type): This method is used to submit a Callable task to the executor for execution. The Callable object represents a task that can return a result and can throw an exception. The Task.TaskType parameter represents the priority of the task. The method creates a CustomFutureTask object and submits it to the customExecutor for execution. The method returns a Future object that can be used to check the status of the task and retrieve its result.
+-submit(Task<T> task) :This method is similar to the previous one, but it takes a Task object as an argument instead of a Callable. The Task object must have a getCallable() method that returns the Callable task and a getType() method that returns the priority of the task. The method creates a CustomFutureTask object and submits it to the customExecutor for execution. The method returns a Future object that can be used to check the status of the task and retrieve its result.
+-gracefullyTerminate():This method is used to shutdown the tasks in the queue. It is used to shut down the executor service in an orderly manner. It will allow currently executing tasks to complete and cancel any waiting tasks, but does not allow any new tasks to start.
+ -getCurrentMax():This method returns the max priority of the task in the queue. It can be used to check the priority of the highest priority task currently in the queue.
+ -CustomSingleThreadPoolExecutor class :class has a special newTaskFor(Runnable runnable, T value) method which is used by the executor when creating new tasks. It will return a CustomFutureTask instead of the default FutureTask.
+ 
+### Tests.java:
+ This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.<br />
 
  # xml diagram 
  ![](https://i.ibb.co/wYK19xT/Screenshot-2023-01-10-181924.jpg)

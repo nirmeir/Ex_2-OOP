@@ -40,11 +40,11 @@ This class implements the Callable interface and is used to calculate the number
 
 
 
-  # xml diagram 
+  # Xml diagram 
   ![](https://i.ibb.co/qYBxs2F/Screenshot-2023-01-09-211932.jpg)
   
   
-  # run time  result
+  # Run time  result
   as we see in the picture the numbers of files is 200.
   the result we get is that the threadpool is the faster then the threads , and after a lot of time without threads.
   
@@ -88,9 +88,13 @@ This is a custom implementation of an Executor in Java. An executor is an object
  
 ### Tests.java:
  This class tests the CustomExecutor class and verifies that the tasks are being executed in the correct order based on their priority.<br />
+ 
+ - partialTest(): This method tests the basic functionality of the CustomExecutor class by creating an instance of the class and submitting two tasks with different priorities (computational and IO-bound) and check if they were executed correctly. This test also check the priority of the tasks in the queue by calling customExecutor.getCurrentMax() and asserting that the highest priority is 2.
+ - privateTest():This method tests the CustomExecutor with multiple submissions of tasks with different priorities, in this case computational and IO-bound. The test asserts that the tasks were executed correctly and also check the priority of the tasks in the queue by calling customExecutor.getCurrentMax() and asserts that the highest priority is 2.
+ - priorityTest():This method tests the CustomExecutor with a mix of tasks with different priorities and assert that the high-priority tasks are executed before the low-priority tasks. The test also asserts that the customExecutor.getCurrentMax() method returns the expected highest priority value.
 ![](https://i.ibb.co/TtWF5W8/Screenshot-2023-01-10-185246.jpg)
  
- # xml diagram 
+ # Xml diagram 
  ![](https://i.ibb.co/wYK19xT/Screenshot-2023-01-10-181924.jpg)
 # How to Run:
 To run this project, download the files and open them in an IDE such as IntelliJ. Then, open the Tests class and run it to test the priority generic task system.

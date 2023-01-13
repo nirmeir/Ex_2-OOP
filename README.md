@@ -38,7 +38,12 @@ This class implements the Callable interface and is used to calculate the number
 - Ex2_4: This function creates an instance of the class with the name of the file to be processed.
 - call: This function reads the lines in the file and returns the number of lines in the file.
 
-
+### test.java:
+this calss tests the part 1 
+- testCreateTextFiles() : assert that the numbers of files equals to the number we give.
+- testGetNumOfLines() :assert that the numbers of lines equals to the number we give  with out threads.
+- testGetNumOfLinesThreads() :assert that the numbers of lines equals to the number we give  with threads.
+- testGetNumOfLinesThreadPool() :assert that the numbers of lines equals to the number we give  with threadpool.
 
   # Xml diagram 
   ![](https://i.ibb.co/qYBxs2F/Screenshot-2023-01-09-211932.jpg)

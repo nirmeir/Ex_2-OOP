@@ -1,9 +1,15 @@
 package Part_2;
 
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
+
 class CustomFutureTask<T> extends FutureTask<T> implements Comparable<CustomFutureTask<T>> {
+    public static final Logger logger2 = LoggerFactory.getLogger(FutureTask.class);
+
     private Task.TaskType type;
     private int priority;
 
@@ -38,6 +44,8 @@ class CustomFutureTask<T> extends FutureTask<T> implements Comparable<CustomFutu
      */
     @Override
     public int compareTo(CustomFutureTask<T> otherTask) {
+        logger2.info(() -> "Comparing " + this.type.getPriorityValue() + " to " + otherTask.type.getPriorityValue());
+        logger2.info(() -> "Taken" +String.valueOf(Integer.compare(priority, otherTask.priority)));
         return Integer.compare(priority, otherTask.priority);
     }
 

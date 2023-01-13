@@ -4,8 +4,11 @@ import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.testng.annotations.Test;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.*;
 
+import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -34,7 +37,6 @@ public class Tests {
         }
 
         logger.info(() -> "Sum of 1 through 10 = " + sum);
-
 
         Callable<Double> callable1 = () -> {
             return 1000 * Math.pow(1.02, 5);
@@ -122,16 +124,13 @@ public class Tests {
             latch.await();
             return "High Priority Task";
         }, Task.TaskType.IO);
-
         var lowPriorityTask = Task.createTask(() -> {
             return "Low Priority Task";
         }, Task.TaskType.COMPUTATIONAL);
-
         customExecutor.submit(highPriorityTask);
         customExecutor.submit(lowPriorityTask);
 
-
-        Thread.sleep(500);
+        sleep(500);
         latch.countDown();
 
 
@@ -144,6 +143,55 @@ public class Tests {
         assertEquals("High Priority Task", highPriorityTaskResult);
         assertEquals("Low Priority Task", lowPriorityTaskResult);
 
+        customExecutor.gracefullyTerminate();
+    }
+
+    @Test
+    public void myTest(){
+        CustomExecutor customExecutor = new CustomExecutor();
+        List <Future> futureList = new LinkedList<>();
+        Task.TaskType taskType = null;
+        int amountOfTasks = 31;
+        int sleep=0;
+        for (int i = 1; i <= amountOfTasks; i++) {
+            if (i%2==0 && i%5!=0){
+                taskType= Task.TaskType.COMPUTATIONAL;
+                sleep=1000;
+            }else if(i%5==0){
+                taskType= Task.TaskType.OTHER;
+                sleep=200;
+            }else {
+                taskType= Task.TaskType.IO;
+                sleep = 500;
+            }
+            int finalI = i;
+            Task.TaskType finalTaskType = taskType;
+            int finalSleep = sleep;
+            Callable callable = () -> {
+                sleep(finalSleep);
+                return finalI;
+            };
+            futureList.add(customExecutor.submit(callable,taskType));
+        }
+        int i=0,taskNum=0,modulo = amountOfTasks;
+        while (!futureList.isEmpty() && modulo>1){
+            if(futureList.get(i).isDone()){
+                try {
+                    taskNum = (int) futureList.get(i).get();
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+                int finalTaskNum = taskNum;
+                int finalI = i;
+                logger.info(() -> "Task number = " + finalTaskNum+"  , " +futureList.get(finalI).toString());
+                futureList.remove(i);
+                i++;
+                modulo--;
+            }else{
+                i++;
+            }
+            i=Math.floorMod(i,modulo);
+        }
         customExecutor.gracefullyTerminate();
     }
 

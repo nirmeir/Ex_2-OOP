@@ -19,11 +19,10 @@ public class Task<T> {
      * @param <T> - Representing the generic value
      * @return - A new Task object
      */
+
     public static <T> Task<T>createTask(Callable<T> callable, TaskType type) {
         return new Task(callable, type);
-
     }
-
 
     /**
      * @return - The callable object
@@ -38,7 +37,6 @@ public class Task<T> {
     public TaskType getType() {
         return type;
     }
-
 
     /**
      * @return - The string representation of the task

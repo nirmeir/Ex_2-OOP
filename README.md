@@ -92,6 +92,9 @@ This is a custom implementation of an Executor in Java. An executor is an object
  - partialTest(): This method tests the basic functionality of the CustomExecutor class by creating an instance of the class and submitting two tasks with different priorities (computational and IO-bound) and check if they were executed correctly. This test also check the priority of the tasks in the queue by calling customExecutor.getCurrentMax() and asserting that the highest priority is 2.
  - privateTest():This method tests the CustomExecutor with multiple submissions of tasks with different priorities, in this case computational and IO-bound. The test asserts that the tasks were executed correctly and also check the priority of the tasks in the queue by calling customExecutor.getCurrentMax() and asserts that the highest priority is 2.
  - priorityTest():This method tests the CustomExecutor with a mix of tasks with different priorities and assert that the high-priority tasks are executed before the low-priority tasks. The test also asserts that the customExecutor.getCurrentMax() method returns the expected highest priority value.
+ 
+ - my_test(): The amount of tasks and the type of task is determined by the value of the loop variable i. Each task, after being assigned, sleeps for a certain amount of time determined by the type of task, and returns the value of i. All the tasks are then submitted to the custom executor and their result is stored in a list of Future objects. The test case then continuously iterates over the list of Future objects, and as soon as a task is done it retrieves its result and logs it along with the task type. The test case then continues to check the status of the remaining tasks and retrieves their results in the same manner until there are no more tasks left. The test case then gracefully terminates the custom executor.
+ 
 ![](https://i.ibb.co/TtWF5W8/Screenshot-2023-01-10-185246.jpg)
  
  # Xml diagram part 2  

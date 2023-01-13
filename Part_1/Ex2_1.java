@@ -19,7 +19,7 @@ public class Ex2_1 {
      * @param n number of threads
      * @param seed seed for random number generator
      * @param bound bound for random number generator
-     * @return list of random numbers
+     * @return list filesnames of random numbers eche file
      */
     public static String[] createTextFiles(int n, int seed, int bound) {
         Random random = new Random(seed);
@@ -38,6 +38,28 @@ public class Ex2_1 {
         }
         return fileNames;
     }
+      /**
+     * @param n number of threads
+     * @param seed seed for number generator
+     * @return list of files with seed numbers lines
+     */   
+	 public static String[] my_createTextFiles(int n, int seed) {
+        String[] fileNames = new String[n];
+        for (int i = 0; i < n; i++) {
+
+            fileNames[i] = "Test_File/file_" + i + ".txt";
+            try (FileWriter fw = new FileWriter(fileNames[i])) {
+                for (int j = 0; j <seed; j++) {
+                    fw.write("Hello Word OOP" + "\n");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return fileNames;
+    }
+
+
 
 
     /**
@@ -125,11 +147,3 @@ public class Ex2_1 {
         System.out.println("Number of lines: " + getNumOfLinesThreadPool(fileNames));
     }
 }
-
-
-
-
-
-
-
-
